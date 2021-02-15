@@ -1,0 +1,14 @@
+﻿@page "/"
+
+<p>Hola @TooUpperCase(nombre)</p>
+<p> Vamos a sumar 2+2 = @(5+5)</p>
+
+<button @onclick="@click1">Click On Me</button>
+@code{
+    string nombre = "David";
+    string TooUpperCase ( string valor) => valor.ToLower();
+    private void click1()
+    {
+        Console.WriteLine("Me han clickeado nene");
+    }
+}
