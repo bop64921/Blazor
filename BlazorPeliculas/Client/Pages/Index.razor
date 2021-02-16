@@ -1,92 +1,10 @@
 ﻿@page "/"
 
 
-<p>Hola @UtilidadesString.TooUpperCase(nombre)</p>
-<p> Vamos a sumar 2+2 = @(5 + 5)</p>
-
-<button @onclick="@click1">Click On Me</button>
-<div>
     <h2>Películas</h2>
-  @*foreach (var pelicula in ObtenerPeliculas())
+    <ListadoPeliculas></ListadoPeliculas>
 
-    {
-        <div>
-            <p>Título: <b>@pelicula.Titulo</b></p>
-            <p>Fecha de lanzamiento:<b>@pelicula.Lanzamiento.ToString("dd MMM yyyy")</b></p>
-        </div>
-    }*@
-
-    @if (Peliculas == null)
-    {
-        <p>Cargando...</p>
-    }
-
-    else if (Peliculas.Count==0)
-    {
-        <p>No hay registros para mostrar...</p>
-    }
-    else
-    {
-
-
-
-    @for (var i = 0; i < Peliculas.Count; i++)
-
-    {
-        <div>
-            @if (i == Peliculas.Count - 1)
-            {
-                <p>Esta es la última Película</p>
-            }
-            <p>@(i + 1) Título: @((MarkupString)Peliculas[i].Titulo)</p>
-            <p>Fecha de lanzamiento:<b>@Peliculas[i].Lanzamiento.ToString("dd MMM yyyy")</b></p>
-        </div>
-    }
-    }
-
-
-</div>
+   
 @code{
-    string nombre = "David";
 
-    protected override async Task OnInitializedAsync()
-    {
-        //await Task.Delay(3000);
-        Peliculas = ObtenerPeliculas();
-
-    }
-
-    public Pelicula SpiderMan { get { return ObtenerPelicula(); } }
-    public List<Pelicula> Peliculas;
-
-    private Pelicula ObtenerPelicula()
-    {
-        return new Pelicula()
-        {
-            Titulo = "Los marsupilamos",
-            Lanzamiento = new DateTime(2020, 11, 14)
-        };
-    }
-
-    private List<Pelicula>ObtenerPeliculas()
-    {
-        return new List<Pelicula>() {
-
-            new Pelicula() { Titulo = "<b>Sipderman1</b>", Lanzamiento = new DateTime(2020, 7, 12) },
-            new Pelicula() { Titulo = "<i>Sipderman2</i>", Lanzamiento = new DateTime(2020, 7, 12) },
-            new Pelicula() { Titulo = "<i>Sipderman2</i>", Lanzamiento = new DateTime(2020, 7, 12) },
-            new Pelicula() { Titulo = "Sipderman3", Lanzamiento = new DateTime(2020, 7, 12) }
-        };
-    }
-
-
-
-
-
-
-
-    private void click1()
-    {
-        Console.WriteLine("Me han clickeado nene");
-    }
-}
+  }

@@ -1,0 +1,50 @@
+﻿<h3>ListadoPeliculas</h3>
+
+@if (Peliculas == null)
+{
+    <p>Cargando...</p>
+}
+
+else if (Peliculas.Count == 0)
+{
+    <p>No hay registros para mostrar...</p>
+}
+else
+{
+
+
+    foreach (var pelicula in Peliculas)
+
+    {
+        <div>
+            <p>Título: <b>@pelicula.Titulo</b></p>
+            <p>Fecha de lanzamiento:<b>@pelicula.Lanzamiento.ToString("dd MMM yyyy")</b></p>
+        </div>
+    }
+}
+
+@code {
+
+
+
+
+    public List<Pelicula> Peliculas;
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(3000);
+        Peliculas = ObtenerPeliculas();
+
+    }
+
+    private List<Pelicula> ObtenerPeliculas()
+    {
+        return new List<Pelicula>() {
+
+            new Pelicula() { Titulo = "<b>Sipderman1</b>", Lanzamiento = new DateTime(2020, 7, 12) },
+            new Pelicula() { Titulo = "<i>Sipderman2</i>", Lanzamiento = new DateTime(2020, 7, 12) },
+            new Pelicula() { Titulo = "<i>Sipderman2</i>", Lanzamiento = new DateTime(2020, 7, 12) },
+            new Pelicula() { Titulo = "Sipderman3", Lanzamiento = new DateTime(2020, 7, 12) }
+        };
+    }
+
+}
