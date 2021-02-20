@@ -11,40 +11,28 @@ else if (Peliculas.Count == 0)
 }
 else
 {
-
+    <input type="checkbox" @bind="showbuttons" />
 
     foreach (var pelicula in Peliculas)
 
     {
-        <div>
-            <p>Título: <b>@pelicula.Titulo</b></p>
-            <p>Fecha de lanzamiento:<b>@pelicula.Lanzamiento.ToString("dd MMM yyyy")</b></p>
-        </div>
+        <PeliculaIndividual Pelicula="pelicula" showbuttons="showbuttons" EliminarPelicula="EliminarPelicula"></PeliculaIndividual>
     }
 }
 
+
+
+
 @code {
 
+    [Parameter] public List<Pelicula> Peliculas {get; set;}
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    bool showbuttons = false;
 
-
-
-    public List<Pelicula> Peliculas;
-    protected override async Task OnInitializedAsync()
+    void EliminarPelicula(Pelicula pelicula)
     {
-        await Task.Delay(3000);
-        Peliculas = ObtenerPeliculas();
-
-    }
-
-    private List<Pelicula> ObtenerPeliculas()
-    {
-        return new List<Pelicula>() {
-
-            new Pelicula() { Titulo = "<b>Sipderman1</b>", Lanzamiento = new DateTime(2020, 7, 12) },
-            new Pelicula() { Titulo = "<i>Sipderman2</i>", Lanzamiento = new DateTime(2020, 7, 12) },
-            new Pelicula() { Titulo = "<i>Sipderman2</i>", Lanzamiento = new DateTime(2020, 7, 12) },
-            new Pelicula() { Titulo = "Sipderman3", Lanzamiento = new DateTime(2020, 7, 12) }
-        };
+        Peliculas.Remove(pelicula);
+        Console.WriteLine("Se ha borrado una pelicula");
     }
 
 }
